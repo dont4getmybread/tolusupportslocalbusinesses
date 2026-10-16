@@ -51,41 +51,48 @@
 
 <style id="tslb-home-image-style">
   html,body{margin:0;min-height:100%;width:100%}
-  .tslb-home-image{position:relative;isolation:isolate;width:100%;height:100vh;height:100svh;overflow:hidden;background:#0A0A0A}
-  .tslb-home-image img{display:block;width:100%;height:100vh;height:100svh;object-fit:cover;object-position:center}
-  /* Moving colour washes blend over the still, original picture.
-     The underlying pattern, shapes and image asset never move or change. */
+  .tslb-home-image{
+    position:relative;isolation:isolate;width:100%;height:100vh;height:100svh;
+    overflow:hidden;background:#0A0A0A;
+  }
+  .tslb-home-image img{
+    display:block;width:100%;height:100vh;height:100svh;
+    object-fit:cover;object-position:center;
+  }
+
+  /* Light reflections travel across the unmodified original image.
+     No extra colours, shape movement, or changes to the artwork itself. */
   .tslb-home-image::before,.tslb-home-image::after{
-    content:"";position:absolute;inset:-35%;z-index:1;pointer-events:none;
-    will-change:transform;border-radius:50%;
+    content:"";position:absolute;pointer-events:none;z-index:1;
+    mix-blend-mode:screen;will-change:transform;
   }
   .tslb-home-image::before{
-    background:
-      radial-gradient(ellipse 28% 31% at 22% 25%,#ff426f 0%,transparent 100%),
-      radial-gradient(ellipse 29% 34% at 75% 24%,#fadc41 0%,transparent 100%),
-      radial-gradient(ellipse 30% 32% at 70% 73%,#19cdd0 0%,transparent 100%),
-      radial-gradient(ellipse 28% 30% at 30% 75%,#795bfa 0%,transparent 100%);
-    mix-blend-mode:color;opacity:.46;
-    animation:tslb-colour-drift-a 10s ease-in-out infinite alternate;
+    inset:-55%;
+    background:linear-gradient(115deg,
+      transparent 38%,
+      rgba(255,255,255,.025) 44%,
+      rgba(255,255,255,.16) 49%,
+      rgba(255,255,255,.23) 50%,
+      rgba(255,255,255,.09) 52%,
+      transparent 60%);
+    opacity:.76;
+    animation:tslb-light-sweep 7s ease-in-out infinite alternate;
   }
   .tslb-home-image::after{
+    inset:-20%;
     background:
-      radial-gradient(ellipse 35% 30% at 78% 40%,#52ec7d 0%,transparent 100%),
-      radial-gradient(ellipse 33% 34% at 26% 68%,#ef45c4 0%,transparent 100%),
-      radial-gradient(ellipse 31% 30% at 48% 20%,#ffa534 0%,transparent 100%),
-      radial-gradient(ellipse 33% 33% at 55% 85%,#138deb 0%,transparent 100%);
-    mix-blend-mode:color;opacity:.35;
-    animation:tslb-colour-drift-b 14s ease-in-out infinite alternate;
+      radial-gradient(ellipse 26% 32% at 28% 40%,rgba(255,255,255,.13),transparent 78%),
+      radial-gradient(ellipse 22% 28% at 78% 63%,rgba(255,255,255,.10),transparent 80%);
+    opacity:.65;
+    animation:tslb-light-glimmer 9s ease-in-out infinite alternate;
   }
-  @keyframes tslb-colour-drift-a{
-    0%{transform:translate3d(-6%,-4%,0) rotate(-8deg) scale(1)}
-    50%{transform:translate3d(5%,3%,0) rotate(8deg) scale(1.06)}
-    100%{transform:translate3d(-2%,7%,0) rotate(-5deg) scale(1.01)}
+  @keyframes tslb-light-sweep{
+    from{transform:translate3d(-38%,0,0)}
+    to{transform:translate3d(38%,0,0)}
   }
-  @keyframes tslb-colour-drift-b{
-    0%{transform:translate3d(7%,-5%,0) rotate(7deg) scale(1.03)}
-    50%{transform:translate3d(-5%,5%,0) rotate(-7deg) scale(1)}
-    100%{transform:translate3d(3%,-3%,0) rotate(9deg) scale(1.06)}
+  @keyframes tslb-light-glimmer{
+    from{transform:translate3d(-8%,6%,0)}
+    to{transform:translate3d(8%,-6%,0)}
   }
   @media(prefers-reduced-motion:reduce){
     .tslb-home-image::before,.tslb-home-image::after{display:none}
