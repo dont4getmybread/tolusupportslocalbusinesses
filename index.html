@@ -52,12 +52,33 @@
 <style id="tslb-home-image-style">
   html,body{margin:0;min-height:100%;width:100%}
   .tslb-home-image{position:relative;isolation:isolate;width:100%;height:100vh;height:100svh;overflow:hidden;background:#0A0A0A}
-  .tslb-home-image img{display:block;width:100%;height:100vh;height:100svh;object-fit:cover;object-position:center}
+  .tslb-home-image img{
+    display:block;width:100%;height:100vh;height:100svh;
+    object-fit:cover;object-position:center;
+    /* Keep the original shapes and colours, but substantially darker. */
+    filter:brightness(.44) saturate(1.16);
+    /* A gentle, moving ripple in the shapes; no added light or colours. */
+    filter:brightness(.44) saturate(1.16) url(#tslb-colour-ripple);
+  }
+  .tslb-ripple-definitions{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+  @media(prefers-reduced-motion:reduce){
+    .tslb-home-image img{filter:brightness(.44) saturate(1.16)}
+  }
 </style>
 </head>
 
 <body>
 
+  <svg class="tslb-ripple-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="tslb-colour-ripple" x="-2%" y="-2%" width="104%" height="104%">
+        <feTurbulence type="fractalNoise" baseFrequency=".004 .005" numOctaves="1" seed="3" result="tslb-waves">
+          <animate attributeName="baseFrequency" values=".004 .005;.0055 .0035;.0035 .0055;.004 .005" dur="9s" repeatCount="indefinite" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="tslb-waves" scale="9" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
   <main class="tslb-home-image" aria-label="ToluSupportsLocalBusinesses homepage">
   <img src="/assets/tslb-home-background.png" alt="ToluSupportsLocalBusinesses colourful abstract background" width="1254" height="1254" fetchpriority="high">
 </main>
