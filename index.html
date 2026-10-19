@@ -51,52 +51,8 @@
 
 <style id="tslb-home-image-style">
   html,body{margin:0;min-height:100%;width:100%}
-  .tslb-home-image{
-    position:relative;isolation:isolate;width:100%;height:100vh;height:100svh;
-    overflow:hidden;background:#0A0A0A;
-  }
-  .tslb-home-image img{
-    display:block;width:100%;height:100vh;height:100svh;
-    object-fit:cover;object-position:center;
-  }
-
-  /* Light reflections travel across the unmodified original image.
-     No extra colours, shape movement, or changes to the artwork itself. */
-  .tslb-home-image::before,.tslb-home-image::after{
-    content:"";position:absolute;pointer-events:none;z-index:1;
-    mix-blend-mode:screen;will-change:transform;
-  }
-  .tslb-home-image::before{
-    inset:-55%;
-    background:linear-gradient(115deg,
-      transparent 38%,
-      rgba(255,255,255,.025) 44%,
-      rgba(255,255,255,.16) 49%,
-      rgba(255,255,255,.23) 50%,
-      rgba(255,255,255,.09) 52%,
-      transparent 60%);
-    opacity:.76;
-    animation:tslb-light-sweep 7s ease-in-out infinite alternate;
-  }
-  .tslb-home-image::after{
-    inset:-20%;
-    background:
-      radial-gradient(ellipse 26% 32% at 28% 40%,rgba(255,255,255,.13),transparent 78%),
-      radial-gradient(ellipse 22% 28% at 78% 63%,rgba(255,255,255,.10),transparent 80%);
-    opacity:.65;
-    animation:tslb-light-glimmer 9s ease-in-out infinite alternate;
-  }
-  @keyframes tslb-light-sweep{
-    from{transform:translate3d(-38%,0,0)}
-    to{transform:translate3d(38%,0,0)}
-  }
-  @keyframes tslb-light-glimmer{
-    from{transform:translate3d(-8%,6%,0)}
-    to{transform:translate3d(8%,-6%,0)}
-  }
-  @media(prefers-reduced-motion:reduce){
-    .tslb-home-image::before,.tslb-home-image::after{display:none}
-  }
+  .tslb-home-image{position:relative;isolation:isolate;width:100%;height:100vh;height:100svh;overflow:hidden;background:#0A0A0A}
+  .tslb-home-image img{display:block;width:100%;height:100vh;height:100svh;object-fit:cover;object-position:center}
 </style>
 </head>
 
