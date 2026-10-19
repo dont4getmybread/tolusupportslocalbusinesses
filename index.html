@@ -60,6 +60,8 @@
     /* A gentle, moving ripple in the shapes; no added light or colours. */
     filter:brightness(.44) saturate(1.16) url(#tslb-colour-ripple);
   }
+  /* Dark translucent veil above the background, with the ripple visible below it. */
+  .tslb-home-image::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.32);pointer-events:none}
   .tslb-ripple-definitions{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
   @media(prefers-reduced-motion:reduce){
     .tslb-home-image img{filter:brightness(.44) saturate(1.16)}
