@@ -61,14 +61,14 @@
     filter:brightness(.44) saturate(1.16) url(#tslb-colour-ripple);
     transform-origin:center center;
     will-change:transform;
-    animation:tslb-background-flow 13s ease-in-out infinite;
+    animation:tslb-background-flow 9s ease-in-out infinite;
   }
-  /* Slow, organic drifting over the original artwork; no new colours or light. */
+  /* Stronger organic drifting over the original artwork; no new colours or light. */
   @keyframes tslb-background-flow{
-    0%,100%{transform:translate3d(-1.1%,.6%,0) scale(1.055)}
-    25%{transform:translate3d(1.3%,-1.1%,0) scale(1.072)}
-    50%{transform:translate3d(1.4%,1.0%,0) scale(1.06)}
-    75%{transform:translate3d(-1.2%,1.1%,0) scale(1.073)}
+    0%,100%{transform:translate3d(-3.2%,1.6%,0) scale(1.13)}
+    25%{transform:translate3d(3.4%,-2.7%,0) scale(1.15)}
+    50%{transform:translate3d(3.7%,2.8%,0) scale(1.14)}
+    75%{transform:translate3d(-3.5%,2.6%,0) scale(1.15)}
   }
   /* Dark translucent veil above the background, with the ripple visible below it. */
   .tslb-home-image::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.60);pointer-events:none}
@@ -85,10 +85,10 @@
     <defs>
       <filter id="tslb-colour-ripple" x="-2%" y="-2%" width="104%" height="104%">
         <feTurbulence type="fractalNoise" baseFrequency=".004 .005" numOctaves="1" seed="3" result="tslb-waves">
-          <animate attributeName="baseFrequency" values=".004 .005;.006 .004;.0035 .006;.004 .005" dur="7s" repeatCount="indefinite" />
+          <animate attributeName="baseFrequency" values=".004 .005;.006 .004;.0035 .006;.004 .005" dur="5.5s" repeatCount="indefinite" />
         </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" in2="tslb-waves" scale="16" xChannelSelector="R" yChannelSelector="G">
-          <animate attributeName="scale" values="12;24;15;22;12" dur="7s" repeatCount="indefinite" />
+        <feDisplacementMap in="SourceGraphic" in2="tslb-waves" scale="25" xChannelSelector="R" yChannelSelector="G">
+          <animate attributeName="scale" values="22;38;24;35;22" dur="5.5s" repeatCount="indefinite" />
         </feDisplacementMap>
       </filter>
     </defs>
