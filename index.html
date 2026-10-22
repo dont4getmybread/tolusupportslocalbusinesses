@@ -17,6 +17,9 @@
   }
   .tslb-opening .tslb-intro { display: grid; }
   .tslb-opening .tslb-intro.is-done { opacity: 0; pointer-events: none; }
+  /* Pause the loading screen without a visible pause button. */
+  .tslb-intro.is-paused .tslb-intro__ring { opacity: 0; }
+  .tslb-intro.is-paused .tslb-intro__ring circle { animation-play-state: paused; }
   .tslb-intro__art { position: relative; width: min(72vw, 220px); aspect-ratio: 1; }
   .tslb-intro__logo, .tslb-intro__ring {
     position: absolute; inset: 0; width: 100%; height: 100%; display: block;
@@ -75,7 +78,6 @@
   }
   /* Dark translucent veil above the background, with the ripple visible below it. */
   .tslb-home-image::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.70);pointer-events:none}
-  .tslb-home-image.is-paused img{animation-play-state:paused}
   .tslb-ripple-definitions{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
   @media(prefers-reduced-motion:reduce){
     .tslb-home-image img{filter:brightness(.44) saturate(1.16);animation:none;transform:none}
@@ -97,42 +99,12 @@
       </filter>
     </defs>
   </svg>
-  <main class="tslb-home-image" tabindex="0" aria-label="Animated background. Press Enter, Space or click to pause movement.">
+  <main class="tslb-home-image" aria-label="ToluSupportsLocalBusinesses homepage">
   <img src="/assets/tslb-home-background.png" alt="ToluSupportsLocalBusinesses colourful abstract background" width="1254" height="1254" fetchpriority="high">
 </main>
-<script>
-(function () {
-  'use strict';
-  var homepage = document.querySelector('.tslb-home-image');
-  var ripple = document.querySelector('.tslb-ripple-definitions');
-  if (!homepage) return;
-
-  function toggleMovement() {
-    var paused = homepage.classList.toggle('is-paused');
-    if (ripple) {
-      if (paused && typeof ripple.pauseAnimations === 'function') {
-        ripple.pauseAnimations();
-      } else if (!paused && typeof ripple.unpauseAnimations === 'function') {
-        ripple.unpauseAnimations();
-      }
-    }
-    homepage.setAttribute('aria-label', paused
-      ? 'Background paused. Press Enter, Space or click to resume movement.'
-      : 'Animated background. Press Enter, Space or click to pause movement.');
-  }
-
-  homepage.addEventListener('click', toggleMovement);
-  homepage.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      toggleMovement();
-    }
-  });
-})();
-</script>
 
 <!-- Logo animation only. Existing homepage markup above is unchanged. -->
-<div class="tslb-intro" id="tslb-intro" role="status" aria-label="ToluSupportsLocalBusinesses is opening">
+<div class="tslb-intro" id="tslb-intro" role="button" tabindex="0" aria-pressed="false" aria-label="Loading animation. Click or press Enter to pause.">
   <div class="tslb-intro__art">
     <svg class="tslb-intro__logo" viewBox="194 193 850 850" aria-label="ToluSupportsLocalBusinesses logo" role="img" xmlns="http://www.w3.org/2000/svg">
       <path fill="#FFFFFF" fill-rule="evenodd" d="M432 355 H716 V396 H757 V437 H792 V473 H822 V849 H431 V355 Z M473 396 H683 V436 H725 V474 H758 V512 H783 V808 H472 V396 Z"></path>
@@ -148,14 +120,51 @@
   'use strict';
   if (!document.documentElement.classList.contains('tslb-opening')) return;
   var intro = document.getElementById('tslb-intro');
-  window.setTimeout(function () {
+  var remaining = 2520;
+  var startedAt = 0;
+  var timer;
+  var exiting = false;
+
+  function finishLoading() {
+    if (exiting) return;
+    exiting = true;
     intro.classList.add('is-done');
     try { sessionStorage.setItem('tslb-intro-seen', '1'); } catch (error) {}
     window.setTimeout(function () {
       document.documentElement.classList.remove('tslb-opening');
       intro.setAttribute('aria-hidden', 'true');
+      intro.setAttribute('tabindex', '-1');
     }, 490);
-  }, 2520);
+  }
+
+  function resumeTimer() {
+    startedAt = performance.now();
+    timer = window.setTimeout(finishLoading, remaining);
+  }
+
+  function toggleLoading() {
+    if (exiting) return;
+    var paused = intro.classList.toggle('is-paused');
+    intro.setAttribute('aria-pressed', String(paused));
+    intro.setAttribute('aria-label', paused
+      ? 'Loading paused. Click or press Enter to resume.'
+      : 'Loading animation. Click or press Enter to pause.');
+    if (paused) {
+      window.clearTimeout(timer);
+      remaining = Math.max(0, remaining - (performance.now() - startedAt));
+    } else {
+      resumeTimer();
+    }
+  }
+
+  intro.addEventListener('click', toggleLoading);
+  intro.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggleLoading();
+    }
+  });
+  resumeTimer();
 })();
 </script>
 </body>
