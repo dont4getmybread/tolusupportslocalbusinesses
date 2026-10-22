@@ -30,7 +30,7 @@
     transform: translate(-50%, -48%); overflow: visible;
   }
   .tslb-intro__ring circle {
-    fill: none; stroke: #FFFFFF; stroke-width: 5.5; stroke-linecap: round;
+    fill: none; stroke: #FFFFFF; stroke-width: 24; stroke-linecap: round;
     stroke-dasharray: 2834; stroke-dashoffset: 2834;
     transform-origin: 624px 603px; transform: rotate(-90deg);
     animation: tslb-ring-draw 2.15s cubic-bezier(.35,.04,.23,1) forwards;
@@ -38,7 +38,7 @@
   @keyframes tslb-ring-draw { to { stroke-dashoffset: 0; } }
   @media (max-width: 600px) {
     .tslb-intro__art { width: min(82vw, 76.3344px); }
-    .tslb-intro__ring circle { stroke-width: 10.5; }
+    .tslb-intro__ring circle { stroke-width: 30; }
   }
   @media (prefers-reduced-motion: reduce) {
     .tslb-intro, .tslb-intro__ring circle { animation: none !important; transition: none !important; }
@@ -80,7 +80,7 @@
     75%{transform:translate3d(-7.3%,5.8%,0) scale(1.32)}
   }
   /* Dark translucent veil above the background, with the ripple visible below it. */
-  .tslb-home-image::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.85);pointer-events:none}
+  .tslb-home-image::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.70);pointer-events:none}
   .tslb-ripple-definitions{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
   /* Preserve the 85% dark overlay while keeping colours visible on narrow screens. */
   @media(max-width:600px){
