@@ -70,7 +70,7 @@
     filter:brightness(.44) saturate(1.16) url(#tslb-colour-ripple);
     transform-origin:center center;
     will-change:transform;
-    animation:tslb-background-flow 4.8s ease-in-out infinite;
+    animation:tslb-background-flow 3.6s ease-in-out infinite;
   }
   /* Stronger organic drifting over the original artwork; no new colours or light. */
   @keyframes tslb-background-flow{
@@ -80,7 +80,7 @@
     75%{transform:translate3d(-7.3%,5.8%,0) scale(1.32)}
   }
   /* Dark translucent veil above the background, with the ripple visible below it. */
-  .tslb-home-image::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.70);pointer-events:none}
+  .tslb-home-image::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.65);pointer-events:none}
   .tslb-ripple-definitions{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
   /* Preserve the 85% dark overlay while keeping colours visible on narrow screens. */
   @media(max-width:600px){
@@ -98,10 +98,10 @@
     <defs>
       <filter id="tslb-colour-ripple" x="-2%" y="-2%" width="104%" height="104%">
         <feTurbulence type="fractalNoise" baseFrequency=".004 .005" numOctaves="1" seed="3" result="tslb-waves">
-          <animate attributeName="baseFrequency" values=".004 .005;.007 .003;.0028 .007;.004 .005" dur="3.2s" repeatCount="indefinite" />
+          <animate attributeName="baseFrequency" values=".004 .005;.007 .003;.0028 .007;.004 .005" dur="2.4s" repeatCount="indefinite" />
         </feTurbulence>
         <feDisplacementMap in="SourceGraphic" in2="tslb-waves" scale="42" xChannelSelector="R" yChannelSelector="G">
-          <animate attributeName="scale" values="38;65;41;62;38" dur="3.2s" repeatCount="indefinite" />
+          <animate attributeName="scale" values="38;65;41;62;38" dur="2.4s" repeatCount="indefinite" />
         </feDisplacementMap>
       </filter>
     </defs>
