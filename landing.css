@@ -2,6 +2,8 @@
 :root { --folder-blue: #e8f3fe; --ink: #0a0a0a; }
 .hero-layout { padding-bottom: 104px; }
 .hero-content { padding-bottom: 0; }
+@media(min-width:761px) { .intro-panel { top: 187px; } }
+@media(min-width:761px) and (max-width:1000px) { .intro-panel { top: 179px; } }
 .page-section { margin-top: 80px; scroll-margin-top: 40px; }
 .section-title { font-size: 15px; line-height: 1.5; font-weight: 500; letter-spacing: -.2px; margin: 0 0 22px; }
 .section-subtitle { font-size: 14px; line-height: 1.6; margin: -12px 0 24px; }
