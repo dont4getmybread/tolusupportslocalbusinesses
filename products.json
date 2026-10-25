@@ -1,0 +1,32 @@
+[
+  {
+    "id": "lucy",
+    "name": "Lucy.",
+    "description": "An AI-powered visibility agent that helps local businesses get discovered online.",
+    "inside": "Google Business Profile monitoring, local SEO analysis, AI search visibility tracking, business listing management, competitor monitoring, performance dashboard."
+  },
+  {
+    "id": "jack",
+    "name": "Jack.",
+    "description": "An AI-powered customer enquiry agent that responds to potential customers and converts enquiries into leads.",
+    "inside": "WhatsApp integration, automated customer responses, lead capture, intelligent follow-ups, conversation management, lead tracking, performance dashboard."
+  },
+  {
+    "id": "emma",
+    "name": "Emma.",
+    "description": "An AI-powered customer retention agent that brings previous customers back and encourages repeat purchases.",
+    "inside": "Customer database, automated reactivation campaigns, customer segmentation, personalised offers, loyalty management, repeat-purchase tracking."
+  },
+  {
+    "id": "ella",
+    "name": "Ella.",
+    "description": "An AI-powered reputation management agent that helps businesses build trust through customer reviews and feedback.",
+    "inside": "Automated review requests, Google review monitoring, suggested review responses, customer feedback collection, sentiment analysis, reputation dashboard."
+  },
+  {
+    "id": "max",
+    "name": "Max.",
+    "description": "An AI-powered booking agent that handles appointments and scheduling automatically.",
+    "inside": "Online booking system, calendar integration, real-time availability, automated confirmations, appointment reminders, cancellation and rescheduling management."
+  }
+]

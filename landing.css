@@ -1,0 +1,117 @@
+/* The hero retains its approved styling; the right column continues below it. */
+:root { --folder-blue: #e8f3fe; --ink: #0a0a0a; }
+.hero-layout { padding-bottom: 104px; }
+.hero-content { padding-bottom: 0; }
+.page-section { margin-top: 80px; scroll-margin-top: 40px; }
+.section-title { font-size: 15px; line-height: 1.5; font-weight: 500; letter-spacing: -.2px; margin: 0 0 22px; }
+.section-subtitle { font-size: 14px; line-height: 1.6; margin: -12px 0 24px; }
+.product-list, .portfolio-list { display: grid; gap: 12px; }
+.product-card { border: 1px solid #ffffff28; border-radius: 14px; background: #ffffff0a; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: background .22s, border-color .22s; overflow: clip; }
+.product-card:hover, .product-card[open], .product-card:focus-within { background: #0a0a0a; border-color: #ffffff40; }
+.product-card summary { position: relative; display: grid; grid-template-columns: 62px minmax(0,1fr) 24px; align-items: center; gap: 20px; padding: 24px; cursor: pointer; list-style: none; min-height: 133px; }
+.product-card summary::-webkit-details-marker { display: none; }
+.product-card summary:focus-visible { outline: 2px solid white; outline-offset: -5px; border-radius: 14px; }
+.product-name { display: block; margin-bottom: 7px; font-size: 20px; font-weight: 500; letter-spacing: -.6px; }
+.product-description { display: block; max-width: 440px; font-size: 13px; line-height: 1.65; font-weight: 400; }
+.folder-icon { width: 62px; height: 55px; overflow: visible; }
+.folder-back { fill: #b7d9f8; stroke: #d2e8fc; stroke-width: 1; transition: fill .22s, stroke .22s; }
+.folder-front { fill: var(--folder-blue); stroke: #c3def7; stroke-width: .8; transition: fill .22s, stroke .22s; }
+.folder-paper { fill: #fff; }
+.product-card:hover .folder-back, .product-card[open] .folder-back, .product-card:focus-within .folder-back { fill: #ffbe13; stroke: #f4ad06; }
+.product-card:hover .folder-front, .product-card[open] .folder-front, .product-card:focus-within .folder-front { fill: #ffdb66; stroke: #f3b420; }
+.expand-sign { position: relative; width: 20px; height: 20px; justify-self: end; }
+.expand-sign:before, .expand-sign:after { content: ''; position: absolute; width: 12px; height: 1.5px; background: currentColor; left: 4px; top: 9px; transition: transform .2s; }
+.expand-sign:after { transform: rotate(90deg); }
+.product-card[open] .expand-sign:before { transform: rotate(45deg); }
+.product-card[open] .expand-sign:after { transform: rotate(135deg); }
+.product-interior { padding: 0 68px 27px 106px; font-size: 13px; line-height: 1.8; }
+.product-interior h3 { font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 10px; }
+.product-interior p { margin: 0 0 20px; }
+.text-link { display: inline-flex; gap: 7px; align-items: center; font-size: 12px; line-height: 1.6; text-decoration: underline; text-underline-offset: 4px; transition: opacity .2s; }
+.text-link:hover { opacity: .7; }
+.text-link:focus-visible { outline: 2px solid white; outline-offset: 4px; }
+.podcast-topline { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; margin-bottom: 15px; }
+.podcast-topline .section-title { margin: 0; }
+.podcast-counter { font-size: 10px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.spotify-frame { border: 0; border-radius: 12px; display: block; width: 100%; height: 152px; background: transparent; }
+.podcast-navigation { display: flex; align-items: center; justify-content: space-between; margin-top: 15px; gap: 16px; }
+.podcast-arrows { display: flex; gap: 8px; }
+.icon-button { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 9px; border: 1px solid #ffffff26; color: inherit; background: #ffffff0c; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: background .2s, border-color .2s; }
+.icon-button:hover, .icon-button:active { background: #0a0a0a; border-color: #ffffff60; }
+.icon-button svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.podcast-label { margin: 0 0 10px; font-size: 11px; line-height: 1.5; }
+.podcast-directory { margin-top: 22px; }
+.podcast-directory>summary { cursor: pointer; font-size: 12px; list-style: none; text-decoration: underline; text-underline-offset: 4px; }
+.podcast-directory>summary::-webkit-details-marker { display: none; }
+.podcast-directory-list { display: grid; gap: 16px; margin-top: 22px; }
+.podcast-directory-item { min-width: 0; }
+.podcast-directory-item a { display: inline-block; margin-top: 8px; }
+.podcast-live-note { margin: 14px 0 0; font-size: 11px; line-height: 1.6; }
+.portfolio-card { min-height: 135px; position: relative; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 20px; align-items: center; padding: 25px 24px; border: 1px solid #ffffff26; border-radius: 14px; background: #ffffff0a; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: background .22s, color .22s; }
+.portfolio-card.has-client:hover, .portfolio-card.has-client:focus-within { background: #fffffff0; color: #0a0a0a; }
+.motley-logo { width: 165px; height: 42px; display: block; object-fit: contain; object-position: left center; margin: -4px 0 10px; }
+.portfolio-card.has-client:hover .motley-logo, .portfolio-card.has-client:focus-within .motley-logo { filter: brightness(0); }
+.portfolio-description { margin: 0; font-size: 12px; line-height: 1.65; }
+.portfolio-actions { display: flex; gap: 8px; }
+.portfolio-card .icon-button { background: transparent; }
+.portfolio-card.has-client:hover .icon-button:hover, .portfolio-card.has-client:focus-within .icon-button:hover { background: #0a0a0a; color: #fff; }
+.tooltip-wrap { position: relative; display: inline-flex; }
+.tooltip-wrap:after { content: attr(data-tooltip); pointer-events: none; position: absolute; right: 0; bottom: calc(100% + 10px); background: #0a0a0a; color: white; font: 400 10px/1.5 Inter,Arial,sans-serif; border: 1px solid #ffffff35; border-radius: 6px; padding: 7px 10px; white-space: nowrap; opacity: 0; transform: translateY(4px); transition: opacity .15s, transform .15s; z-index: 2; }
+.tooltip-wrap:hover:after, .tooltip-wrap:focus-within:after { opacity: 1; transform: translateY(0); }
+.portfolio-empty { min-height: 118px; user-select: none; }
+.portfolio-empty span { width: 100%; height: 1px; display: block; background: linear-gradient(90deg,transparent,#ffffff14,transparent); }
+.site-footer { position: relative; background: #0a0a0a; padding: 56px 0 22px; }
+.footer-grid { max-width: 1200px; padding: 0 32px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)) 1.14fr; }
+.footer-column { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-content: start; min-height: 138px; padding: 0 22px; border-left: 1px solid #ffffff24; }
+.footer-column:first-child { border-left: 0; padding-left: 0; }
+.footer-column h2 { font-size: 10px; line-height: 1.8; font-weight: 400; margin: 0; }
+.footer-links { display: grid; gap: 6px; align-content: start; }
+.footer-link { width: fit-content; padding: 0; font-size: 10px; line-height: 1.8; text-align: left; border: 0; background: transparent; color: white; cursor: pointer; }
+.footer-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.footer-copyright { font-size: 10px; line-height: 1.8; margin: 0; }
+.footer-wordmark { max-width: 1440px; margin: 64px auto 0; padding: 0 30px; }
+.footer-wordmark svg { width: 100%; height: auto; display: block; overflow: hidden; }
+.footer-art { transform-origin: center; animation: tslb-background-flow 3.6s ease-in-out infinite; filter: saturate(1.16) brightness(.8); }
+.site-dialog { max-height: calc(100svh - 40px); overflow: auto; width: min(580px,calc(100vw - 32px)); padding: 30px; color: #fff; border: 1px solid #ffffff3b; border-radius: 14px; background: #0a0a0a; }
+.site-dialog::backdrop { background: #000b; backdrop-filter: blur(10px); }
+.site-dialog h2 { margin: 0 32px 18px 0; font-size: 23px; font-weight: 500; letter-spacing: -.7px; line-height: 1.3; }
+.site-dialog p { font-size: 13px; line-height: 1.8; }
+.site-dialog .dialog-close { margin-top: -8px; }
+.email-template { padding: 20px; margin: 20px 0; border: 1px solid #ffffff28; border-radius: 9px; font-size: 12px; line-height: 1.9; white-space: pre-wrap; font-family: inherit; }
+.dialog-status { min-height: 20px; font-size: 11px; }
+.store-main { max-width: 960px; padding: 56px 32px 112px; margin: auto; }
+.store-intro { margin-bottom: 56px; max-width: 580px; }
+.store-intro h1 { font-size: 48px; margin-bottom: 20px; }
+.store-intro p { font-size: 14px; line-height: 1.8; }
+.store-product { scroll-margin-top: 32px; }
+.store-product .product-interior { padding-top: 0; }
+.store-label { font-size: 10px; display: inline-block; padding: 4px 8px; border: 1px solid #ffffff35; border-radius: 99px; margin-bottom: 18px; }
+.visually-hidden { position: absolute; height: 1px; width: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+@media(max-width:1000px) { .product-card summary { gap: 16px; padding: 22px; grid-template-columns: 52px minmax(0,1fr) 18px; } .folder-icon { width: 52px; height: 48px; } .product-interior { padding-left: 90px; padding-right: 40px; } .footer-column { gap: 16px; padding: 0 16px; } }
+@media(max-width:760px) {
+  .page-section { margin-top: 64px; }
+  .hero-layout { padding-bottom: 72px; }
+  .section-title { font-size: 15px; }
+  .product-card summary { padding: 21px 18px; gap: 14px; grid-template-columns: 47px minmax(0,1fr) 16px; min-height: 139px; }
+  .folder-icon { width: 47px; height: 44px; }
+  .product-name { font-size: 20px; margin-bottom: 6px; }
+  .product-description { font-size: 12px; line-height: 1.65; }
+  .product-interior { padding: 0 24px 26px 79px; font-size: 12px; }
+  .expand-sign { width: 16px; }
+  .expand-sign:before,.expand-sign:after { left: 2px; }
+  .portfolio-card { padding: 23px 18px; gap: 12px; grid-template-columns: 1fr; }
+  .portfolio-actions { position: absolute; top: 24px; right: 17px; gap: 5px; }
+  .portfolio-actions .icon-button { width: 32px; height: 32px; }
+  .motley-logo { width: 144px; height: 36px; margin-bottom: 16px; }
+  .portfolio-description { max-width: 265px; }
+  .portfolio-empty { min-height: 100px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; padding: 0 24px; row-gap: 32px; }
+  .footer-column { min-height: 130px; padding: 0 20px; grid-template-columns: 1fr; gap: 12px; }
+  .footer-column:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .footer-column h2,.footer-link,.footer-copyright { font-size: 11px; }
+  .footer-wordmark { margin-top: 44px; padding: 0 20px; }
+  .site-footer { padding: 40px 0 24px; }
+  .store-main { padding: 36px 24px 72px; }
+  .store-intro h1 { font-size: 36px; }
+}
+@media(prefers-reduced-motion:reduce) { .footer-art { animation: none; transform: scale(1.3); } *,*:before,*:after { transition-duration: 0s !important; } }
