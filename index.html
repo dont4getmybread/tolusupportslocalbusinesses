@@ -90,6 +90,151 @@
     .tslb-home-image img{filter:brightness(.44) saturate(1.16);animation:none;transform:none}
   }
 </style>
+
+<style id="tslb-card-carousel-style">
+  /* Right-side 3D card carousel, inspired by the supplied video.
+     The original fluid homepage artwork and opening animation remain independent. */
+  .tslb-feature-carousel {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    right: clamp(18px, 4.5vw, 76px);
+    transform: translateY(-50%);
+    width: min(800px, 58vw);
+    height: min(570px, 72svh);
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid rgba(255, 255, 255, .13);
+    border-radius: 18px;
+    background: linear-gradient(145deg, rgba(12, 16, 17, .8), rgba(7, 11, 12, .68));
+    box-shadow: 0 20px 74px rgba(0, 0, 0, .28);
+  }
+  .tslb-feature-carousel::before {
+    content: "";
+    position: absolute;
+    inset: 9% 4% 2%;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse at 45% 54%, rgba(153, 255, 123, .36) 0%, rgba(108, 212, 115, .24) 24%, rgba(39, 119, 64, .13) 47%, transparent 73%),
+      radial-gradient(ellipse at 80% 83%, rgba(85, 243, 167, .12), transparent 53%);
+    filter: blur(28px);
+    pointer-events: none;
+  }
+  .tslb-feature-carousel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: radial-gradient(ellipse at 50% 57%, transparent 35%, rgba(0, 0, 0, .36) 100%);
+    pointer-events: none;
+  }
+  .tslb-feature-carousel__hint {
+    position: absolute;
+    top: 21px;
+    left: 23px;
+    z-index: 4;
+    color: rgba(255, 255, 255, .69);
+    font: 500 9px/1.3 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  .tslb-feature-carousel__stage {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    perspective: 1100px;
+    transform-style: preserve-3d;
+    touch-action: pan-y;
+    cursor: grab;
+  }
+  .tslb-feature-carousel__stage:active { cursor: grabbing; }
+  .tslb-feature-card {
+    position: absolute;
+    left: 50%;
+    top: 64%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: clamp(152px, 14.5vw, 194px);
+    height: clamp(208px, 19vw, 250px);
+    padding: 17px 16px 15px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .20);
+    border-radius: 13px;
+    color: #f7f8f4;
+    background: linear-gradient(149deg, rgba(32, 44, 38, .82), rgba(13, 20, 17, .88) 76%);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, .26), inset 0 1px 0 rgba(255, 255, 255, .055);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition:
+      transform 1050ms cubic-bezier(.19, .76, .2, 1),
+      opacity 880ms ease,
+      filter 880ms ease,
+      border-color 880ms ease;
+    will-change: transform, opacity;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .tslb-feature-card[data-active="true"] { border-color: rgba(234, 255, 229, .31); }
+  .tslb-feature-card__eyebrow {
+    font: 600 8px/1.4 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .tslb-feature-card__number {
+    display: block;
+    margin-top: 16px;
+    font: 400 clamp(37px, 3.2vw, 50px)/1.06 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    letter-spacing: -.08em;
+    font-variant-numeric: tabular-nums;
+  }
+  .tslb-feature-card__number span {
+    margin-left: 4px;
+    color: rgba(255, 255, 255, .43);
+    font-size: 13px;
+    letter-spacing: -.03em;
+  }
+  .tslb-feature-card__bottom { margin-top: auto; }
+  .tslb-feature-card__body {
+    margin: 0 0 14px;
+    color: rgba(241, 247, 239, .80);
+    font: 400 9px/1.55 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+  .tslb-feature-card__rule { height: 1px; background: rgba(255, 255, 255, .18); }
+  .tslb-feature-card__footnote {
+    display: block;
+    padding-top: 10px;
+    color: rgba(248, 251, 246, .56);
+    font: 400 8px/1.35 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+  @media (max-width: 800px) {
+    .tslb-feature-carousel {
+      right: 14px;
+      width: min(520px, calc(100vw - 28px));
+      height: min(440px, 64svh);
+      border-radius: 15px;
+    }
+    .tslb-feature-card { width: 165px; height: 218px; top: 62%; }
+    .tslb-feature-card__number { font-size: 41px; }
+  }
+  @media (max-width: 480px) {
+    .tslb-feature-carousel {
+      right: 9px;
+      width: calc(100vw - 18px);
+      height: min(370px, 60svh);
+    }
+    .tslb-feature-card { width: 150px; height: 210px; top: 61%; padding: 15px 13px 13px; }
+    .tslb-feature-card__number { font-size: 38px; }
+    .tslb-feature-carousel__hint { top: 16px; left: 17px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tslb-feature-card { transition: none !important; }
+  }
+</style>
 </head>
 
 <body>
@@ -108,7 +253,174 @@
   </svg>
   <main class="tslb-home-image" aria-label="ToluSupportsLocalBusinesses homepage">
   <img src="/assets/tslb-home-background.png" alt="ToluSupportsLocalBusinesses colourful abstract background" width="1254" height="1254" fetchpriority="high">
+
+  <section class="tslb-feature-carousel" aria-label="Sliding placeholder cards">
+    <div class="tslb-feature-carousel__hint" aria-hidden="true">Lorem ipsum</div>
+    <div class="tslb-feature-carousel__stage" id="tslb-feature-stage" aria-roledescription="carousel">
+      <article class="tslb-feature-card" aria-label="Placeholder card 1 of 7">
+        <span class="tslb-feature-card__eyebrow">Lorem ipsum</span>
+        <span class="tslb-feature-card__number">01<span>/ 07</span></span>
+        <div class="tslb-feature-card__bottom">
+          <p class="tslb-feature-card__body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <div class="tslb-feature-card__rule"></div>
+          <small class="tslb-feature-card__footnote">Lorem ipsum dolor</small>
+        </div>
+      </article>
+      <article class="tslb-feature-card" aria-label="Placeholder card 2 of 7">
+        <span class="tslb-feature-card__eyebrow">Lorem ipsum</span>
+        <span class="tslb-feature-card__number">02<span>/ 07</span></span>
+        <div class="tslb-feature-card__bottom">
+          <p class="tslb-feature-card__body">Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p>
+          <div class="tslb-feature-card__rule"></div>
+          <small class="tslb-feature-card__footnote">Lorem ipsum dolor</small>
+        </div>
+      </article>
+      <article class="tslb-feature-card" aria-label="Placeholder card 3 of 7">
+        <span class="tslb-feature-card__eyebrow">Lorem ipsum</span>
+        <span class="tslb-feature-card__number">03<span>/ 07</span></span>
+        <div class="tslb-feature-card__bottom">
+          <p class="tslb-feature-card__body">Lorem ipsum dolor sit amet, ut enim ad minim.</p>
+          <div class="tslb-feature-card__rule"></div>
+          <small class="tslb-feature-card__footnote">Lorem ipsum dolor</small>
+        </div>
+      </article>
+      <article class="tslb-feature-card" aria-label="Placeholder card 4 of 7">
+        <span class="tslb-feature-card__eyebrow">Lorem ipsum</span>
+        <span class="tslb-feature-card__number">04<span>/ 07</span></span>
+        <div class="tslb-feature-card__bottom">
+          <p class="tslb-feature-card__body">Lorem ipsum dolor sit amet, quis nostrud exercitation.</p>
+          <div class="tslb-feature-card__rule"></div>
+          <small class="tslb-feature-card__footnote">Lorem ipsum dolor</small>
+        </div>
+      </article>
+      <article class="tslb-feature-card" aria-label="Placeholder card 5 of 7">
+        <span class="tslb-feature-card__eyebrow">Lorem ipsum</span>
+        <span class="tslb-feature-card__number">05<span>/ 07</span></span>
+        <div class="tslb-feature-card__bottom">
+          <p class="tslb-feature-card__body">Lorem ipsum dolor sit amet, laboris nisi ut aliquip.</p>
+          <div class="tslb-feature-card__rule"></div>
+          <small class="tslb-feature-card__footnote">Lorem ipsum dolor</small>
+        </div>
+      </article>
+      <article class="tslb-feature-card" aria-label="Placeholder card 6 of 7">
+        <span class="tslb-feature-card__eyebrow">Lorem ipsum</span>
+        <span class="tslb-feature-card__number">06<span>/ 07</span></span>
+        <div class="tslb-feature-card__bottom">
+          <p class="tslb-feature-card__body">Lorem ipsum dolor sit amet, duis aute irure dolor.</p>
+          <div class="tslb-feature-card__rule"></div>
+          <small class="tslb-feature-card__footnote">Lorem ipsum dolor</small>
+        </div>
+      </article>
+      <article class="tslb-feature-card" aria-label="Placeholder card 7 of 7">
+        <span class="tslb-feature-card__eyebrow">Lorem ipsum</span>
+        <span class="tslb-feature-card__number">07<span>/ 07</span></span>
+        <div class="tslb-feature-card__bottom">
+          <p class="tslb-feature-card__body">Lorem ipsum dolor sit amet, excepteur sint occaecat.</p>
+          <div class="tslb-feature-card__rule"></div>
+          <small class="tslb-feature-card__footnote">Lorem ipsum dolor</small>
+        </div>
+      </article>
+    </div>
+  </section>
 </main>
+
+<script id="tslb-card-carousel-script">
+(function () {
+  'use strict';
+  var stage = document.getElementById('tslb-feature-stage');
+  if (!stage) return;
+  var frame = stage.parentElement;
+  var cards = Array.prototype.slice.call(stage.querySelectorAll('.tslb-feature-card'));
+  var count = cards.length;
+  var selected = 2;
+  var previous = new Array(count);
+  var timer = null;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var startX = null;
+
+  function placeCards() {
+    var frameWidth = frame.getBoundingClientRect().width;
+    var step = Math.min(178, Math.max(127, frameWidth * .225));
+    cards.forEach(function (card, index) {
+      var offset = (index - selected + count) % count;
+      if (offset > Math.floor(count / 2)) offset -= count;
+      var distance = Math.abs(offset);
+      var x = Math.round(offset * step);
+      var y = Math.round(distance * 8);
+      var z = -distance * 72;
+      var tilt = -offset * 11;
+      var scale = 1 - distance * .065;
+      var wrapped = previous[index] !== undefined && Math.abs(previous[index] - offset) > 1;
+      if (wrapped) card.style.transition = 'none';
+      card.style.transform = 'translate(-50%, -50%) translate3d(' +
+        x + 'px,' + y + 'px,' + z + 'px) rotateY(' + tilt + 'deg) scale(' + scale + ')';
+      card.style.opacity = distance >= 3 ? '0' : distance === 2 ? '.57' : distance === 1 ? '.85' : '1';
+      card.style.filter = distance >= 2 ? 'brightness(.65)' : distance === 1 ? 'brightness(.83)' : 'none';
+      card.style.zIndex = String(10 - distance);
+      card.style.pointerEvents = distance >= 3 ? 'none' : 'auto';
+      card.setAttribute('data-active', String(offset === 0));
+      card.setAttribute('aria-hidden', String(distance >= 3));
+      previous[index] = offset;
+      if (wrapped) {
+        void card.offsetWidth;
+        card.style.transition = '';
+      }
+    });
+  }
+
+  function shift(direction) {
+    selected = (selected + direction + count) % count;
+    placeCards();
+  }
+
+  function stopAuto() {
+    if (timer !== null) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function startAuto() {
+    stopAuto();
+    if (!reduceMotion && !document.hidden) {
+      timer = setInterval(function () { shift(1); }, 2400);
+    }
+  }
+
+  stage.addEventListener('pointerdown', function (event) {
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+    startX = event.clientX;
+  });
+  stage.addEventListener('pointerup', function (event) {
+    if (startX === null) return;
+    var distance = event.clientX - startX;
+    startX = null;
+    if (Math.abs(distance) > 28) {
+      shift(distance < 0 ? 1 : -1);
+      startAuto();
+    }
+  });
+  stage.addEventListener('pointercancel', function () { startX = null; });
+  cards.forEach(function (card, index) {
+    card.addEventListener('click', function () {
+      if (startX !== null) return;
+      var difference = (index - selected + count) % count;
+      if (difference > count / 2) difference -= count;
+      if (difference !== 0 && Math.abs(difference) <= 2) {
+        shift(difference > 0 ? 1 : -1);
+        startAuto();
+      }
+    });
+  });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stopAuto();
+    else startAuto();
+  });
+  window.addEventListener('resize', placeCards);
+  placeCards();
+  requestAnimationFrame(function () { placeCards(); startAuto(); });
+})();
+</script>
 
 <!-- Logo animation only. Existing homepage markup above is unchanged. -->
 <div class="tslb-intro" id="tslb-intro" role="button" tabindex="0" aria-pressed="false" aria-label="Loading animation. Click or press Enter to pause.">
